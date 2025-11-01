@@ -1,16 +1,18 @@
-import pandas as pd 
+import pandas as pd
 
-data=pd.read_csv("data/drugsComTrain_raw.csv")
-# print(data.head)
-data
+df = pd.read_csv('data/raw/drugLibTrain_raw.csv')
+head = df.head
+columns = df.columns
+missing = df.isna()
+dfWithoutNA = df.dropna()
 
-d1=data["drugName"].unique()
-print(d1)
-ratings = pd.read_csv("data/drug_ratings.csv")
-d2=ratings["Drug Name"] 
+if df.isnull().any().any():
+    print(True)
+else:
+    print(False)
+if dfWithoutNA.isnull().any().any():
+    print(True)
+else:
+    print(False)
 
-sum=0
-for d1 in d2:
-    sum = sum+ 1
-    
-print(sum)
+df.to_csv('drugLibTrain_clean.csv')
